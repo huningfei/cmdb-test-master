@@ -30,3 +30,6 @@ http://127.0.0.1:8000/show_service/（需要先登录）
 查看用户和业务关系（需要先登录)
 http://127.0.0.1:8000/user_service_list/
 查看的页面有编辑的功能，没有添加和删除的功能，只可以添加，删除，用户或业务
+
+
+![images](https://github.com/huningfei/cmdb-test-master/blob/master/images/host_list.png)
