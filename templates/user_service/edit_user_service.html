@@ -1,0 +1,61 @@
+{% extends "mother.html" %}
+{% block page-css %}
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/user.css">
+{% endblock %}
+
+
+{% block page-js %}
+    <script src="/static/jquery-3.3.1.min.js"></script>
+    <script src="/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="/static/index.js"></script>
+{% endblock %}
+
+{% block page-main %}
+
+    <div class="col-md-10">
+        <div class="panel panel-success" id="edit_user_right">
+            <div class="panel-heading">
+                <h3 class="panel-title">编辑用户和业务</h3>
+            </div>
+            <div class="panel-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <p>用户名：
+                                    <input type="text" name="name" value="{{ user_name.username }}">
+                                </p>
+                                <p>业务名：
+                                    <select name="services" multiple style="width: 170px">
+                                        {% for service in service_obj %}
+                                            {% if service in user_name.services.all %}
+{#                                            如果业务在你所选的用户属于的业务中，那么就加selected选中它，user_name是你view里面#}
+{#                                                得到的用户名#}
+
+                                                <option selected value="{{ service.id }}">{{ service.name }}</option>
+                                            {% else %}
+                                                <option value="{{ service.id }}">{{ service.name }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </p>
+                                <p>
+                                    <input type="submit" value="提交" class="btn btn-info">
+                                     <a href="/user_service_list/" class="btn btn-warning" style="margin-left: 140px">取消</a>
+                                </p>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+

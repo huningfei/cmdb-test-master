@@ -1,0 +1,58 @@
+
+{% extends "mother.html" %}
+
+{% block page-css %}
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/user.css">
+{% endblock %}
+
+{% block page-js %}
+    <script src="/static/jquery-3.3.1.min.js"></script>
+    <script src="/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    {#    <script src="/static/index.js"></script>#}
+{% endblock %}
+
+{% block page-main %}
+
+    <div class="col-md-10">
+        <div class="panel panel-info" id="show_user">
+            <div class="panel-heading">
+                <h3 class="panel-title">业务列表</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                    <tr class="success">
+                        <th>序号</th>
+                        <th>业务id</th>
+                        <th>业务名称</th>
+
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+
+                    {% for obj in service_obj %}
+                        <tr>
+                            <td>{{ forloop.counter| add:num }}</td>
+                            <td>{{ obj.id }}</td>
+                            <td>{{ obj.name }}</td>
+                            <td>
+
+                                <a href="/edit_service/{{ obj.id }}" class="btn btn-info">编辑</a>
+                                <a href="/del_service/{{ obj.id }}" class="btn btn-warning">删除</a>
+
+
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                </table>
+                <a class="btn btn-info" href="/add_service/">添加业务</a>
+
+            </div>
+
+        </div>
+    {{ page_html|safe }}
+    </div>
+
+{% endblock %}
